@@ -33,8 +33,8 @@ LAMBDA_GP = 10
 
 class CustomDataset(Dataset):
     def __init__(self):
-        self.imgs_path = "/Users/salvatoreesposito/Documents/copy_dummy/"
-        # self.imgs_path = "/disk/scratch/datasets/dummy_emg/"
+        # self.imgs_path = "/Users/salvatoreesposito/Documents/copy_dummy/"
+        self.imgs_path = "/disk/scratch/datasets/dummy_emg3/"
         file_list = glob.glob(self.imgs_path + "*")
         print(file_list)
         self.data = []
@@ -78,10 +78,10 @@ opt_critic = optim.Adam(critic.parameters(), lr=LEARNING_RATE, betas=(0.5, 0.999
 
 # for tensorboard plotting
 fixed_noise = torch.randn(5, Z_DIM, 1, 1).to(device)
-writer_real=SummaryWriter(f"/Users/salvatoreesposito/Documents/Github/2DCGAN/logs/real")
-writer_fake=SummaryWriter(f"/Users/salvatoreesposito/Documents/Github/2DCGAN/logs/fake")
-# writer_real=SummaryWriter(f"/disk/scratch/logs/real")
-# writer_fake=SummaryWriter(f"/disk/scratch/logs/fake")
+# writer_real=SummaryWriter(f"/Users/salvatoreesposito/Documents/Github/2DCGAN/logs/real")
+# writer_fake=SummaryWriter(f"/Users/salvatoreesposito/Documents/Github/2DCGAN/logs/fake")
+writer_real=SummaryWriter(f"/disk/scratch/logs/real")
+writer_fake=SummaryWriter(f"/disk/scratch/logs/fake")
 step = 0
 
 gen.train()
@@ -123,37 +123,6 @@ for epoch in range(NUM_EPOCHS):
               Loss D: {loss_disc:.4f}, loss G: {loss_gen:.4f}"
         )
 
-
-
-        # with torch.no_grad():
-        #     # to_visualise = 50
-        #     # noise = torch.randn(to_visualise, Z_DIM, 1, 1, 1).to(device)
-        #     # fake = gen(noise)
-        #     noise_t = torch.squeeze(fake, 1)
-        #     # noise_f = torch.flatten(noise_t, start_dim=0, end_dim=1)
-        #     # noise_u = torch.unsqueeze(noise_f, 1)
-        #     current_real = real[:]
-        #     current_real_t = torch.squeeze(current_real, 1)
-        #     # current_real_f = torch.flatten(current_real_t, start_dim=0, end_dim=1)
-        #     # current_real_u = torch.unsqueeze(current_real_f, 1)
-        #     # take out (up to) 32 examples
-        #     # img_grid_real = torchvision.utils.make_grid(current_real_u, normalize=True, nrow=12, padding=5)
-        #     # img_grid_fake = torchvision.utils.make_grid(noise_u, normalize=True, nrow=12, padding=5)
-        #     aa = torch.unsqueeze(current_real_t[:,0,:,:],1)
-        #     bb = torch.unsqueeze(noise_t[:,0,:,:],1)
-        #     img_grid_real = torchvision.utils.make_grid(aa, normalize=True)#, nrow=5,padding=5)
-        #     img_grid_fake = torchvision.utils.make_grid(bb, normalize=True)#, nrow=5,padding=5)
-        #
-        #     # img_grid_real = Image.fromarray((255 * img_grid_real[:,:,:].permute(1, 2, 0)).numpy().astype(np.uint8))
-        #     # img_grid_fake = Image.fromarray((255 * img_grid_fake[:,:,:].permute(1, 2, 0)).numpy().astype(np.uint8))
-        #
-        #     # writer_real.add_image("Real", torch.squeeze(img_grid_real[:,:,:],0), global_step=step, dataformats='HW')
-        #     # writer_fake.add_image("Fake", torch.squeeze(img_grid_fake[:,:,:],0), global_step=step, dataformats='HW')
-        #
-        #     writer_real.add_images("Real", img_grid_real[:5, :, :, :], global_step=step, dataformats='NCHW')
-        #     writer_fake.add_images("Fake", img_grid_fake[:5, :, :, :], global_step=step, dataformats='NCHW')
-        #
-        # step += 1
         with torch.no_grad():
             to_visualise = 32
             noise = torch.randn(to_visualise, Z_DIM, 1, 1, 1).to(device)
