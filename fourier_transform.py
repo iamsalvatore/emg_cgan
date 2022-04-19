@@ -58,7 +58,7 @@ def random_frex(frex1, frex2):
 #     for i in range(10000):
 #         get_noise_specs  4 asmnples
 
-def get_noise_specs(lower_frex, higher_frex, srate=2000, iter=25, no_chann=12, root_path="/Users/salvatoreesposito/Documents/dummy_emg3/"):
+def get_noise_specs(lower_frex, higher_frex, srate=2000, iter=25, no_chann=12, root_path="/Users/salvatoreesposito/Documents/50_100Hz_pure/0/"):
 
     npnts = srate * 10  # 2 seconds
     time = np.arange(0, npnts) / srate
@@ -77,7 +77,7 @@ def get_noise_specs(lower_frex, higher_frex, srate=2000, iter=25, no_chann=12, r
                 sig = np.zeros(len(time))
                 for j in range(0, frex.shape[1]):
                     sig = sig + np.sin(2 * np.pi * frex[i,j] * time)
-                sig = sig + np.random.randn(len(sig))
+                # sig = sig + np.random.randn(len(sig))
                 sig = sig[:600]  # would be good to define this magic no. forgot the resoning behind it though
                 # call spec on each new signal
                 spec_temp = stft_spec_2(sig, fs=srate)
@@ -98,7 +98,9 @@ def get_noise_specs(lower_frex, higher_frex, srate=2000, iter=25, no_chann=12, r
 def main():
     lower_frex = [50, 100, 150, 200]
     higher_frex = [250, 300, 350, 400]
-    get_noise_specs(lower_frex, higher_frex, srate=2000, iter=25000, no_chann=12, root_path="/Users/salvatoreesposito/Documents/dummy_emg3/")
+    # lower_frex = [50]
+    # higher_frex = [100]
+    get_noise_specs(lower_frex, higher_frex, srate=2000, iter=25000, no_chann=12, root_path="/Users/salvatoreesposito/Documents/50_400Hz_pure/0/")
 
 if __name__ == '__main__':
     main()

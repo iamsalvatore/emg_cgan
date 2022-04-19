@@ -8,20 +8,21 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, Dataset
 from torch.utils.tensorboard import SummaryWriter
 from model import Discriminator, Generator, initialize_weights
-# from utils import gradient_penalty
+from utils import gradient_penalty
 import numpy as np
 import os
 import glob
 import matplotlib.pyplot as plt
 from PIL import Image
 
+
 torch.manual_seed(0)
 
 # Hyperparameters etc.
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-LEARNING_RATE = 0.0001
-BATCH_SIZE = 50
+LEARNING_RATE = 1e-4
+BATCH_SIZE = 128
 IMAGE_SIZE = 129
 CHANNELS_IMG = 1
 Z_DIM = 100
@@ -53,14 +54,8 @@ class CustomDataset(Dataset):
         class_id = self.class_map[class_name]
         # img_tensor = torch.from_numpy(np.load(npy_path))
         img_tensor = torch.unsqueeze(torch.from_numpy(np.load(npy_path)), dim=0)
-        # print(img_tensor.shape)
-        # input('enter')
-        # img_tensor = img_tensor.permute(2, 0, 1)
         class_id = torch.tensor([class_id])
-        # if self.transform:
-        #     img_tensor = self.transform(img_tensor)
-        # if self.transform:
-        #     class_id = self.target_transform(class_id)
+
         return img_tensor, class_id
 
 
@@ -92,24 +87,22 @@ for epoch in range(NUM_EPOCHS):
     for batch_idx, (real, _) in enumerate(data_loader):
         real = real.to(device)
         cur_batch_size = real.shape[0]
-        # img_grid_real = torchvision.utils.make_grid(real[:,0,:,:], normalize=True, nrow=12, padding=5)
-        # writer_real.add_image("Real INITIAL", img_grid_real, global_step=step)
-        # Train Critic: max E[critic(real)] - E[critic(fake)]
-        # equivalent to minimizing the negative of that
-        noise = torch.randn(cur_batch_size, Z_DIM, 1, 1, 1).to(device)
-        fake = gen(noise)
-        critic_real = critic(real).reshape(-1)
-        critic_fake = critic(fake).reshape(-1)
-        loss_real = criterion(critic_real, torch.ones_like(critic_real))
-        loss_fake = criterion(critic_fake, torch.zeros_like(critic_fake))
-        loss_disc = (loss_real + loss_fake) / 2
-        # gp = gradient_penalty(critic, real, fake, device=device)
-        # loss_critic = (
-        #     -(torch.mean(critic_real) - torch.mean(critic_fake)) + LAMBDA_GP * gp
-        # )
-        critic.zero_grad()
-        loss_disc.backward(retain_graph=True)
-        opt_critic.step()
+
+        for  _ in range(CRITIC_ITERATIONS):
+            noise = torch.randn(cur_batch_size, Z_DIM, 1, 1, 1).to(device)
+            fake = gen(noise)
+            critic_real = critic(real).reshape(-1)
+            critic_fake = critic(fake).reshape(-1)
+            loss_real = criterion(critic_real, torch.ones_like(critic_real))
+            loss_fake = criterion(critic_fake, torch.zeros_like(critic_fake))
+            loss_disc = (loss_real + loss_fake) / 2
+            gp = gradient_penalty(critic, real, fake, device=device)
+            loss_critic = (
+                -(torch.mean(critic_real) - torch.mean(critic_fake)) + LAMBDA_GP * gp
+            )
+            critic.zero_grad()
+            loss_disc.backward(retain_graph=True)
+            opt_critic.step()
 
         # Train Generator: max E[critic(gen_fake)] <-> min -E[critic(gen_fake)]
         gen_fake = critic(fake).reshape(-1)
