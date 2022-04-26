@@ -13,10 +13,6 @@ class Discriminator(nn.Module):
             self._block(features_d*4, 1, 1, 1, 0),
             nn.Flatten(start_dim=1),
             nn.Linear(12*64*6, 1),
-            nn.Sigmoid(),
-            # self._block(features_d * 4, features_d * 8, 4, 2, 1),
-            # After all _block img output is 4x4 (Conv2d below makes into 1x1)
-            # nn.Conv3d(features_d * 8, 1, kernel_size=4, stride=2, padding=0),
         )
 
     def _block(self, in_channels, out_channels, kernel_size, stride, padding):
@@ -44,17 +40,6 @@ class Generator(nn.Module):
             self._block( 128, 64, 1, 1, 0),  # img: 8x8v
             self._block(64, 32, 1, 1, 0),  # img: 8x8v
             self._block( 32, 9, 1, 1, 0),  # img: 8x8v
-            # self._block(128, 64, 2, 2, 0),
-            # self._block(64, 32, 2, 2, 0),
-            # self._block(32, 12, 2, 2, 0),
-            # self._block(8, 4, 1, 1, 0),
-            # self._block(4, 2, 1, 1, 0),
-            # self._block(features_g * 8, features_g * 4, 2, 2, 0),  # img: 16x16
-            # self._block(features_g * 4, features_g * 2, 2, 2, 0),  # img: 32x32
-            # nn.ConvTranspose3d(
-            #     features_g * 2, channels_img, kernel_size=2, stride=1, padding=0
-            # ),
-            # Output: N x channels_img x 64 x 64
             nn.Tanh(),
         )
 
