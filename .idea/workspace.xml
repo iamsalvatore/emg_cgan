@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45b15190-33af-4c19-8956-c68c23017400" name="Changes" comment="wgan with gradied penalty">
+      <change afterPath="$PROJECT_DIR$/cgan.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cgan_train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pre_processing_cgan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fourier_transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/fourier_transform.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wgan_gpmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/wgan_gpmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wgan_gptrain.py" beforeDir="false" afterPath="$PROJECT_DIR$/wgan_gptrain.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +45,51 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.wgan_gptrain">
+  <component name="RunManager" selected="Python.cgan_train">
+    <configuration name="cgan" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="EMG_cGAN" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cgan.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="cgan_train" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="EMG_cGAN" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/anaconda3/envs/cybernetic_gans/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cgan_train.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="wgan_gpmodel" type="PythonConfigurationType" factoryName="Python">
       <module name="EMG_cGAN" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -91,6 +135,8 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.cgan" />
+      <item itemvalue="Python.cgan_train" />
       <item itemvalue="Python.wgan_gpmodel" />
       <item itemvalue="Python.wgan_gptrain" />
     </list>
@@ -115,6 +161,9 @@
       <workItem from="1650556954695" duration="1273000" />
       <workItem from="1650638167663" duration="304000" />
       <workItem from="1650639719532" duration="1474000" />
+      <workItem from="1650998618059" duration="4269000" />
+      <workItem from="1651232953666" duration="5340000" />
+      <workItem from="1651416616942" duration="600000" />
     </task>
     <task id="LOCAL-00001" summary="wgan with gradied penalty">
       <created>1650391726827</created>
@@ -123,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650391726827</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="wgan with gradied penalty">
+      <created>1650998625985</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650998625985</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,7 +201,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="wgan with gradied penalty" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/EMG_cGAN$cgan.coverage" NAME="cgan Coverage Results" MODIFIED="1651235702538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EMG_cGAN$fourier_transform.coverage" NAME="fourier_transform Coverage Results" MODIFIED="1649670202683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EMG_cGAN$cgan_train.coverage" NAME="cgan_train Coverage Results" MODIFIED="1651236914730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EMG_cGAN$wgan_gptrain.coverage" NAME="wgan_gptrain Coverage Results" MODIFIED="1650559298745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
