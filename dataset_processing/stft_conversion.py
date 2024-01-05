@@ -96,11 +96,11 @@ def get_noise_specs(lower_frex, higher_frex, srate=2000, iter=25, no_chann=12, r
                     spec_sample_no += 1
 
 def main():
-    lower_frex = [50, 100, 150, 200]
-    higher_frex = [250, 300, 350, 400]
-    # lower_frex = [50]
-    # higher_frex = [100]
-    get_noise_specs(lower_frex, higher_frex, srate=2000, iter=25000, no_chann=12, root_path="/Users/salvatoreesposito/Documents/50_400Hz_pure/0/")
+    # lower_frex = [50, 100, 150, 200]
+    # higher_frex = [250, 300, 350, 400]
+    lower_frex = [50,150]
+    higher_frex = [100,400]
+    get_noise_specs(lower_frex, higher_frex, srate=2000, iter=50000, no_chann=12, root_path="/Users/salvatoreesposito/Documents/4sig_Hz/0/")
 
 if __name__ == '__main__':
     main()

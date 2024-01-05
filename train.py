@@ -31,37 +31,6 @@ FEATURES_GEN = 16
 CRITIC_ITERATIONS = 5
 LAMBDA_GP = 10
 
-class CustomDataset(Dataset):
-    def __init__(self):
-        # self.imgs_path = "/Users/salvatoreesposito/Documents/copy_dummy/"
-        self.imgs_path = "/disk/scratch/datasets/50_400Hz_pure/"
-        file_list = glob.glob(self.imgs_path + "*")
-        # print(file_list)
-        self.data = []
-        for class_path in file_list:
-            class_name = class_path.split("/")[-1]
-            for npy_path in glob.glob(class_path + "/*.npy"):
-                self.data.append([npy_path, class_name])
-        # print(self.data)
-        self.class_map = {"0" : 0}
-
-    def __len__(self):
-        return len(self.data)
-
-    def __getitem__(self, idx):
-        npy_path, class_name = self.data[idx]
-        class_id = self.class_map[class_name]
-        # img_tensor = torch.from_numpy(np.load(npy_path))
-        img_tensor = torch.unsqueeze(torch.from_numpy(np.load(npy_path)), dim=0)
-        # print(img_tensor.shape)
-        # input('enter')
-        # img_tensor = img_tensor.permute(2, 0, 1)
-        class_id = torch.tensor([class_id])
-        # if self.transform:
-        #     img_tensor = self.transform(img_tensor)
-        # if self.transform:
-        #     class_id = self.target_transform(class_id)
-        return img_tensor, class_id
 
 
 dataset = CustomDataset()
@@ -80,8 +49,8 @@ opt_critic = optim.Adam(critic.parameters(), lr=LEARNING_RATE, betas=(0.5, 0.999
 fixed_noise = torch.randn(5, Z_DIM, 1, 1).to(device)
 # writer_real=SummaryWriter(f"/Users/salvatoreesposito/Documents/Github/2DCGAN/logs/real")
 # writer_fake=SummaryWriter(f"/Users/salvatoreesposito/Documents/Github/2DCGAN/logs/fake")
-writer_real=SummaryWriter(f"/disk/scratch/logs2/real")
-writer_fake=SummaryWriter(f"/disk/scratch/logs2/fake")
+writer_real=SummaryWriter(f"/disk/scratch/class_log/real")
+writer_fake=SummaryWriter(f"/disk/scratch/class_log/fake")
 step = 0
 
 gen.train()
@@ -92,10 +61,6 @@ for epoch in range(NUM_EPOCHS):
     for batch_idx, (real, _) in enumerate(data_loader):
         real = real.to(device)
         cur_batch_size = real.shape[0]
-        # img_grid_real = torchvision.utils.make_grid(real[:,0,:,:], normalize=True, nrow=12, padding=5)
-        # writer_real.add_image("Real INITIAL", img_grid_real, global_step=step)
-        # Train Critic: max E[critic(real)] - E[critic(fake)]
-        # equivalent to minimizing the negative of that
         noise = torch.randn(cur_batch_size, Z_DIM, 1, 1, 1).to(device)
         fake = gen(noise)
         critic_real = critic(real).reshape(-1)
@@ -127,16 +92,6 @@ for epoch in range(NUM_EPOCHS):
             to_visualise = 32
             noise = torch.randn(to_visualise, Z_DIM, 1, 1, 1).to(device)
             fake = gen(noise)
-            # print(fake.shape)
-            # print(real.shape)
-            # noise_t = torch.squeeze(fake, 1)
-            # noise_f = torch.flatten(noise_t, start_dim=0, end_dim=1)
-            # noise_u = torch.unsqueeze(noise_f, 1)
-            # current_real = real[:to_visualise]
-            # current_real_t = torch.squeeze(current_real, 1)
-            # current_real_f = torch.flatten(current_real_t, start_dim=0, end_dim=1)
-            # current_real_u = torch.unsqueeze(current_real_f, 1)
-            # take out (up to) 32 examples
             current_real_u = torch.squeeze(real, 1)
             current_real_u = current_real_u.reshape(-1,1, 64,6)
             # print(current_real_u.shape)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="45b15190-33af-4c19-8956-c68c23017400" name="Changes" comment="wgan with gradied penalty">
-      <change afterPath="$PROJECT_DIR$/cgan.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cgan_train.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pre_processing_cgan.py" afterDir="false" />
+    <list default="true" id="45b15190-33af-4c19-8956-c68c23017400" name="Changes" comment="conditional_gan with bce loss">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cgan_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/cgan_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wgan_gptrain.py" beforeDir="false" afterPath="$PROJECT_DIR$/wgan_gptrain.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +163,9 @@
       <workItem from="1650639719532" duration="1474000" />
       <workItem from="1650998618059" duration="4269000" />
       <workItem from="1651232953666" duration="5340000" />
-      <workItem from="1651416616942" duration="600000" />
+      <workItem from="1651416616942" duration="659000" />
+      <workItem from="1651828105458" duration="530000" />
+      <workItem from="1652105159075" duration="127000" />
     </task>
     <task id="LOCAL-00001" summary="wgan with gradied penalty">
       <created>1650391726827</created>
@@ -179,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650998625985</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="conditional_gan with bce loss">
+      <created>1651423468013</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1651423468014</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +207,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="wgan with gradied penalty" />
-    <option name="LAST_COMMIT_MESSAGE" value="wgan with gradied penalty" />
+    <MESSAGE value="conditional_gan with bce loss" />
+    <option name="LAST_COMMIT_MESSAGE" value="conditional_gan with bce loss" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EMG_cGAN$cgan.coverage" NAME="cgan Coverage Results" MODIFIED="1651235702538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
